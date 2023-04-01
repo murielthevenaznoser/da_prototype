@@ -1,7 +1,7 @@
 <template>
   <section class="todoapp">
     <header class="header">
-      <h1>todos</h1>
+      <h1>TODOS TEST</h1>
       <h2 v-if="isLoading">Loading...</h2>     
       <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" v-model="newTodo"
         @keyup.enter="addTodo" />
