@@ -23,10 +23,43 @@
     }
   },
   "entities": {
-    "Todo": {
-      "source": "dbo.todos",
+    "Medications": {
+      "source": "dbo.medications",
       "rest": {
-        "path": "todo"
+        "path": "medications"
+      },
+      "permissions": [
+        {
+          "role": "anonymous",
+          "actions": [
+            {
+              "action": "*",
+              "policy": {
+                "database": "@item.owner_id eq 'public'"
+              }
+            }            
+          ]
+        },
+        {
+          "role": "authenticated",
+          "actions": [
+            {
+              "action": "*",
+              "policy": {
+                "database": "@item.owner_id eq @claims.userId"
+              }
+            }            
+          ]
+        }        
+      ],
+      "mappings": {
+        "position": "order"
+      }      
+    },
+    "Categories": {
+      "source": "dbo.categories",
+      "rest": {
+        "path": "categories"
       },
       "permissions": [
         {

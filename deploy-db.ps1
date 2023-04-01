@@ -12,13 +12,13 @@ if (Test-Path $envFile) {
 }
 
 $curDir = Get-Location
-Set-Location ".\database\TodoDB\"
+Set-Location ".\database\"
 
 Write-Host "Building .dacpac..."
 dotnet build -c Release         
 
 Write-Host "Deploying .dacpac..."
-sqlpackage /a:Publish -sf:./bin/Release/TodoDB.dacpac -tcs:$env:AZURE_SQL_DEPLOY_USER /p:DropObjectsNotInSource=false
+sqlpackage /a:Publish -sf:./bin/Release/MedicationsDB.dacpac -tcs:$env:AZURE_SQL_DEPLOY_USER /p:DropObjectsNotInSource=false
 
 Set-Location $curDir
 Write-Host "Done."

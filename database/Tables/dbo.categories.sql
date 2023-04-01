@@ -1,0 +1,16 @@
+CREATE TABLE [dbo].[categories]
+(
+	[id] [uniqueidentifier] NOT NULL,
+	[title] [nvarchar](1000) NOT NULL,	
+	[position] INT NULL
+) 
+GO
+ALTER TABLE [dbo].[categories] ADD PRIMARY KEY NONCLUSTERED 
+(
+	[id] ASC
+)
+GO
+ALTER TABLE [dbo].[categories] ADD DEFAULT (newid()) FOR [id]
+GO
+ALTER TABLE [dbo].[categories] ADD  DEFAULT ('public') FOR [owner_id]
+GO
