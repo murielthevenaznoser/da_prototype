@@ -8,7 +8,7 @@
     </header>
     <section class="main" v-show="response.length">
       <ul class="response-list">        
-        <li v-for="response in response-list" class="response" :key="response.id" </li>
+        <li v-for="response in response-list" class="response" :key="response.id"></li>
       </ul>
     </section>
   </section>

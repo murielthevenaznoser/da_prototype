@@ -28,14 +28,10 @@
       "rest": {
         "path": "medications"
       },
-      "permissions": []
-    },
-    "Categories": {
-      "source": "dbo.categories",
-      "rest": {
-        "path": "categories"
-      },
-      "permissions": []
+      "permissions": [        {
+        "actions": ["read"],
+        "role": "anonymous"
+      }]
     }
   }
 }
