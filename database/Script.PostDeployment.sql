@@ -34,7 +34,7 @@ insert into dbo.categories
 ) 
 values
     ('00000000-0000-0000-0000-000000000001', N'AINS salycilé', N'Effet primaire', N'Si réaction retardée, éviction de tous les AINS de type salicylé'),
-    ('00000000-0000-0000-0000-000000000002', N'AINS', N'Si réaction allergique immédiate, éviction de tous les AINS', N'Effet retardé'),
+    ('00000000-0000-0000-0000-000000000002', N'AINS', N'Si réaction allergique immédiate, éviction de tous les AINS', N'Effet retardé')
 ;
 
 insert into dbo.medications 
@@ -49,5 +49,5 @@ values
     ('00000000-0000-0000-0000-000000000002', N'Lebewohl, Hühneraugenpflaster', N'acidum salicylicum', '00000000-0000-0000-0000-000000000001'),
     ('00000000-0000-0000-0000-000000000003', N'Mobilat, Salbe', N'acidum salicylicum', '00000000-0000-0000-0000-000000000001'),
     ('00000000-0000-0000-0000-000000000004', N'Alcacyl, Tabletten', N'acidum acetylsalicylicum', '00000000-0000-0000-0000-000000000002'),
-    ('00000000-0000-0000-0000-000000000005', N'Celecoxib Xiromed 200 mg, Hartkapseln', N'celecoxibum', '00000000-0000-0000-0000-000000000002'),
+    ('00000000-0000-0000-0000-000000000005', N'Celecoxib Xiromed 200 mg, Hartkapseln', N'celecoxibum', '00000000-0000-0000-0000-000000000002')
 ;
