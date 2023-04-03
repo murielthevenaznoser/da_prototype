@@ -23,73 +23,31 @@ end else begin
     alter role db_owner add member [app_dab_user]
 end
 
+
 -- Insert sample data
-delete from dbo.medications where id in
-(
-    '00000000-0000-0000-0000-000000000001',
-    '00000000-0000-0000-0000-000000000002',
-    '00000000-0000-0000-0000-000000000003',
-    '00000000-0000-0000-0000-000000000004',
-    '00000000-0000-0000-0000-000000000005'
-);
-insert into dbo.medications 
-(
-    [id],
-    [title],
-	[completed],
-	[owner_id],
-	[position]
-) 
-values
-    ('00000000-0000-0000-0000-000000000001', N'Hello world', 0, 'public', 1),
-    ('00000000-0000-0000-0000-000000000002', N'This is done', 1, 'public', 2),
-    ('00000000-0000-0000-0000-000000000003', N'And this is not done (yet!)', 0, 'public', 4),
-    ('00000000-0000-0000-0000-000000000004', N'This is a ☆☆☆☆☆ tool!', 0, 'public', 3),
-    ('00000000-0000-0000-0000-000000000005', N'Add support for sorting', 1, 'public', 5)
-;
-
-if (object_id('tempdb..#medications_order') is not null)
-begin    
-    update
-        t
-    set
-        t.position = s.[order]
-    from
-        dbo.medications t
-    inner join
-        #medications_order s on t.id = s.id
-    ;
-    drop table #medications_order;
-end
-
-delete from dbo.categories where id in
-(
-    '00000000-0000-0000-0000-000000000001',
-    '00000000-0000-0000-0000-000000000002',
-    '00000000-0000-0000-0000-000000000003'
-);
 insert into dbo.categories
 (
     [id],
-    [title],
-	[position]
+    [name],
+	[primaryEffect],
+    [secondaryEffect]
 ) 
 values
-    ('00000000-0000-0000-0000-000000000001', N'Hello world', 1),
-    ('00000000-0000-0000-0000-000000000002', N'This is done', 2),
-    ('00000000-0000-0000-0000-000000000003', N'And this is not done (yet!)', 3),
+    ('00000000-0000-0000-0000-000000000001', N'AINS salycilé', N'Effet primaire', N'Si réaction retardée, éviction de tous les AINS de type salicylé'),
+    ('00000000-0000-0000-0000-000000000002', N'AINS', N'Si réaction allergique immédiate, éviction de tous les AINS', N'Effet retardé'),
 ;
 
-if (object_id('tempdb..#categories_order') is not null)
-begin    
-    update
-        t
-    set
-        t.position = s.[order]
-    from
-        dbo.categories t
-    inner join
-        #categories_order s on t.id = s.id
-    ;
-    drop table #categories_order;
-end
+insert into dbo.medications 
+(
+    [id],
+    [name],
+	[component],
+	[categoryId]
+) 
+values
+    ('00000000-0000-0000-0000-000000000001', N'Alcacyl, Tabletten', N'acidum acetylsalicylicum', '00000000-0000-0000-0000-000000000001'),
+    ('00000000-0000-0000-0000-000000000002', N'Lebewohl, Hühneraugenpflaster', N'acidum salicylicum', '00000000-0000-0000-0000-000000000001'),
+    ('00000000-0000-0000-0000-000000000003', N'Mobilat, Salbe', N'acidum salicylicum', '00000000-0000-0000-0000-000000000001'),
+    ('00000000-0000-0000-0000-000000000004', N'Alcacyl, Tabletten', N'acidum acetylsalicylicum', '00000000-0000-0000-0000-000000000002'),
+    ('00000000-0000-0000-0000-000000000005', N'Celecoxib Xiromed 200 mg, Hartkapseln', N'celecoxibum', '00000000-0000-0000-0000-000000000002'),
+;

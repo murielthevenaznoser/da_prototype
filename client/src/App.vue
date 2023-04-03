@@ -1,16 +1,16 @@
 <template>  
   <vue-progress-bar></vue-progress-bar>
-  <ToDoList />
+  <Demo />
 </template>
 
 <script>
-import ToDoList from './components/ToDoList.vue'
+import Demo from './components/Demo.vue'
 import { getCurrentInstance } from "vue";
 
 export default {  
   name: 'App',
   components: {
-    ToDoList
+    Demo
   },
   setup() {
     const internalInstance = getCurrentInstance();
@@ -25,5 +25,5 @@ export default {
 
 <style>
   @import url("https://unpkg.com/todomvc-app-css@2.2.0/index.css");
-  @import url("./styles/todo-custom.css");
+  @import url("./styles/custom.css");
 </style>

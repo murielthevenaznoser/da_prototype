@@ -28,66 +28,14 @@
       "rest": {
         "path": "medications"
       },
-      "permissions": [
-        {
-          "role": "anonymous",
-          "actions": [
-            {
-              "action": "*",
-              "policy": {
-                "database": "@item.owner_id eq 'public'"
-              }
-            }            
-          ]
-        },
-        {
-          "role": "authenticated",
-          "actions": [
-            {
-              "action": "*",
-              "policy": {
-                "database": "@item.owner_id eq @claims.userId"
-              }
-            }            
-          ]
-        }        
-      ],
-      "mappings": {
-        "position": "order"
-      }      
+      "permissions": []
     },
     "Categories": {
       "source": "dbo.categories",
       "rest": {
         "path": "categories"
       },
-      "permissions": [
-        {
-          "role": "anonymous",
-          "actions": [
-            {
-              "action": "*",
-              "policy": {
-                "database": "@item.owner_id eq 'public'"
-              }
-            }            
-          ]
-        },
-        {
-          "role": "authenticated",
-          "actions": [
-            {
-              "action": "*",
-              "policy": {
-                "database": "@item.owner_id eq @claims.userId"
-              }
-            }            
-          ]
-        }        
-      ],
-      "mappings": {
-        "position": "order"
-      }      
+      "permissions": []
     }
   }
 }
