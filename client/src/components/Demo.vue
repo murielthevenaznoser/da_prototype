@@ -73,12 +73,12 @@ export default {
         this.getCategories(value);
       }
       else {
-        this.returnError();
+        this.showError();
       }
     },
 
     getCategories: function (value) {
-      return fetch(MEDICATION, {
+      fetch(MEDICATION, {
         headers: HEADERS,
         method: "GET"
       })
@@ -88,17 +88,17 @@ export default {
           var entries = this.medications.filter(m => m.name === value).map(e => new Medication(e));
           var categories = [];
 
-          entries.forEach(entry => {
-            var category = this.getCategoryInfos(entry.categoryId);
+          entries.forEach(async entry => {
+            var category = await this.getCategoryInfos(entry.categoryId);
             console.log('first cat after model', category);
             if (!category) {
-              this.logError();
+              this.showError();
               return;
             }
             categories.push(category);
           });
           return categories;
-        }, () => { this.logError(); }
+        }, () => { this.showError(); }
         ).then(categories => {
           if (categories.length === 0) {
             this.message = "Aucun médicament contre-indiqué";
@@ -109,8 +109,8 @@ export default {
         });
     },
 
-    getCategoryInfos: function (id) {
-      return fetch(CATEGORIE + `/id/${id}`, {
+    getCategoryInfos: async function (id) {
+      return await fetch(CATEGORIE + `/id/${id}`, {
         headers: HEADERS,
         method: "GET"
       })
@@ -120,7 +120,7 @@ export default {
             return null;
           }
           return new Category(res.value[0]);
-        }, () => { this.logError(); });
+        }, () => { this.showError(); });
     },
 
     getMedicationsForCategories: function (categories) {
@@ -138,7 +138,7 @@ export default {
       this.isLoading = false;
     },
 
-    returnError: function () {
+    showError: function () {
       this.message = "Une erreur s'est produite."
       this.isLoading = false;
     }
