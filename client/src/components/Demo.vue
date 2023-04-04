@@ -122,6 +122,7 @@ export default {
           if (!res?.value || res.value.length !== 1) {
             return null;
           }
+          console.log('category', res.value[0]);
           return new Category(res.value[0]);
         });
     },
