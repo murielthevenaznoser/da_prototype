@@ -52,8 +52,8 @@ input {
   margin-bottom: 2em;
   font-size: 2em;
   background-color: #C2FBD7;     
-  width: 30em;
-  height: 2.5em;
+  width: 25em;
+  height: 2em;
 }
 
 #alert {
@@ -63,6 +63,6 @@ input {
 
 #message {
   color: blue;
-  font-size: 4em;
+  font-size: 3em;
   margin-bottom: 1em;
 }

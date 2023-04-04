@@ -97,11 +97,12 @@ export default {
           this.medications = res?.value === null || res?.value === undefined ? [] : res.value;
           var entries = this.medications.filter(e => e.name === value).map(e => new Medication(e));
           var categories = [];
-          foreach(entry in entries)
+          entries.forEach(entry => 
           {
             var category = this.getCategoryInfos(entry.categoryId);
             categories.push(category);
-          }
+          });
+          console.log('categories after foreach', categories);
           return categories;
         }
         );
@@ -120,22 +121,12 @@ export default {
     },
 
     getMedicationsForCategories: function (categories) {
-      foreach(category in categories)
-      {
-        fetch(MEDICATION + `?$categoryId=${category.id}`, {
-          headers: HEADERS,
-          method: "GET"
-        })
-          .then(res => { return res.json(); }, () => {return} )
-          .then(res => {
-            console.log('all meds', res);
-            var medications = res?.value === null ? [] : res.value.map(v => new Medication(v));
-            console.log('after model', medications);
-            category.medications = medications;
-            this.response.push(category);
-          });
-      }
-    }
+      categories.forEach(category => {
+        var medEntries = this.medications.filer(m => m.categoryId === category.id);
+        category.medications = medEntries;
+        this.response.push(category);
+      });
+    },
   },
 };
 
