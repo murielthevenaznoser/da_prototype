@@ -88,22 +88,26 @@ export default {
     },
 
     getCategories: async function (value) {
-      const res = await fetch(MEDICATION, {
+      return await fetch(MEDICATION, {
         headers: HEADERS,
         method: "GET"
-      });
-      const res_1 = await res.json();
-      this.medications = res_1?.value === null || res_1?.value === undefined ? [] : res_1.value;
-      var entries = this.medications.filter(e => e.name === value).map(e_1 => new Medication(e_1));
-      entries.forEach(async entry => {
-        var category = await this.getCategoryInfos(entry.categoryId);
-        categories.push(category);
-      });
-      console.log('all categories', categories);
-      return categories;
+      })
+        .then(res => { return res.json(); })
+        .then(res => {
+          this.medications = res?.value === null || res?.value === undefined ? [] : res.value;
+          var entries = this.medications.filter(m => m.name === value).map(e => new Medication(e));
+          var categories = [];
+          entries.forEach(async entry => {
+            var category = await this.getCategoryInfos(entry.categoryId);
+            categories.push(category);
+          });
+          console.log('all categories', categories);
+          return categories;
+        }
+        );
     },
 
-    getCategoryInfos:  async function (id) {
+    getCategoryInfos: async function (id) {
       fetch(CATEGORIE + `/id/${id}`, {
         headers: HEADERS,
         method: "GET"
