@@ -12,12 +12,12 @@
         <li v-for="category in response">
           <div>
             <label>{{ category.name }}</label>
-            <p class="bold">Recommandation immédiate: {{ category.primaryEffect }}</p>
-            <p class="italic">{{ category.primaryEffect }}</p>
-            <p class="bold">Recommandation à long terme: {{ category.secondaryEffect }}</p>
-            <p class="italic">{{ category.secondaryEffect }}</p>
+            <p class="titel">Recommandation immédiate:</p>
+            <p class="value">{{ category.primaryEffect }}</p>
+            <p class="titel">Recommandation à long terme:</p>
+            <p class="value">{{ category.secondaryEffect }}</p>
             <p></p>
-            <p class="bold">List des médicaments concernés:</p>
+            <p class="titel">List des médicaments concernés:</p>
             <ul>
               <li v-for="medication in category.medications">
                 <div>
@@ -112,6 +112,7 @@ export default {
           cat.medications = medEntries;
           return cat;
         })
+        this.loading = false;
     },
 
     getMedications: function() {
