@@ -119,7 +119,8 @@ export default {
       })
         .then(res => { return res.json(); })
         .then(res => {
-          return new Category(res?.value);
+          console.log("cat infos", res);
+          return new Category(res);
         });
     },
 
