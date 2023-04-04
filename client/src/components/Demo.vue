@@ -83,12 +83,12 @@ export default {
         method: "GET"
       })
         .then(res => { return res.json(); })
-        .then(res => {
+        .then(async res => {
           this.medications = res?.value === null || res?.value === undefined ? [] : res.value;
           var entries = this.medications.filter(m => m.name === value).map(e => new Medication(e));
           var categories = [];
 
-          entries.forEach(async entry => {
+          await entries.forEach(async entry => {
             var category = await this.getCategoryInfos(entry.categoryId);
             if (!category) {
               this.logError();
@@ -98,6 +98,7 @@ export default {
           });
 
           console.log('categories', categories);
+          console.log('length', categories.length);
 
           if (categories.length === 0) {
             this.message = "Aucun médicament contre-indiqué";
