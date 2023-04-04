@@ -96,11 +96,9 @@ export default {
             }
             categories.push(new Category(category));
           });
-          console.log('categ', categories);
           return categories;
         }, () => { this.logError(); }
         ).then(categories => {
-          console.log('leength', categories.length);
           if (categories.length === 0) {
             this.message = "Aucun médicament contre-indiqué";
             this.isLoading = false;
@@ -126,12 +124,12 @@ export default {
 
     getMedicationsForCategories: function (categories) {
       categories.forEach(category => {
+        console.log('medic', this.medications);
+        console.log('categ', category);
         var medEntries = this.medications.filter(m => m.categoryId === category.id);
-        console.log('medentries', medEntries);
         category.medications = medEntries;
         this.response.push(category);
       });
-      console.log('response', this.response);
       this.isLoading = false;
     },
 
