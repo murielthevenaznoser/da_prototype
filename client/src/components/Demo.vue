@@ -101,14 +101,11 @@ export default {
           var categories = [];
           entries.forEach(async entry => {
             var category = await this.getCategoryInfos(entry.categoryId);
-            console.log("category back", category);
             if (!category) {
               return null;
             }
-            categories.push(category);
-            console.log("categories from within", categories);
+            categories.push(new Category(category));
           });
-          console.log("categories from outside", categories);
           return categories;
         }
         );
@@ -134,6 +131,7 @@ export default {
         category.medications = medEntries;
         this.response.push(category);
       });
+      console.log('response', this.response);
     },
   },
 };
