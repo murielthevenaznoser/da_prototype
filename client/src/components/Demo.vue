@@ -122,7 +122,7 @@ export default {
           if (!res?.value || res.value.length !== 1) {
             return null;
           }
-          return res.value.map(e => new Category(e)).find(v => v !== undefined);
+          return res.value[0];
         });
     },
 
