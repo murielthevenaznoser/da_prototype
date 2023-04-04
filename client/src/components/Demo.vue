@@ -93,8 +93,7 @@ export default {
       })
         .then(res => { return res.json(); })
         .then(res => {
-          var entries = res?.value === null ? [] : res.value;
-          console.log('entries', entries);
+          var entries = res?.value === null || res?.value === undefined ? [] : res.value;
           var categories = [];
           foreach(entry in entries)
           {

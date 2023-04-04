@@ -38,8 +38,8 @@
         }
       ],
       "mappings": {
-        "name": "name",
-        "categoryId": "categoryId"
+        "medications_name": "name",
+        "medications_categoryId": "categoryId"
       }
     },
     "Categorie": {
