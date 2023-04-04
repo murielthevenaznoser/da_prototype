@@ -3,17 +3,17 @@
     <header class="header">
       <h1>DEMO</h1>
       <h2 v-if="isLoading">Loading...</h2>     
-      <input class="check-medication" autofocus autocomplete="off" placeholder="Quel médicament doit être recherché ?" v-model="searchInput"
+      <input autofocus autocomplete="off" placeholder="Quel médicament doit être recherché ?" v-model="searchInput"
         @keyup.enter="searchMedication" />
     </header>
-    <footer class="footer">Copyright by ALLIANs allergY SaRL</footer>
+    <div id="message" v-if="message">{{ message }}</div>
   </section>
 </template>
 
 
 <script lang="js">
-const MEDICATIONS = "/data-api/rest/medications";
-const CATEGORIES = "/data-api/rest/categories";
+const MEDICATION = "/data-api/rest/medication";
+const CATEGORIE = "/data-api/rest/categorie";
 const HEADERS = { 'Accept': 'application/json', 'Content-Type': 'application/json;charset=utf-8' };
 
 
@@ -23,7 +23,8 @@ export default {
     return {
       searchInput: '',
       response: [],
-      isLoading: false
+      isLoading: false,
+      message: ''
     };
   },
 
@@ -33,19 +34,22 @@ export default {
 
       var value = this.searchInput && this.searchInput.trim();
       if (!value) return;
-      fetch(MEDICATIONS, {
+
+      fetch(MEDICATION, {
         headers: HEADERS,
         method: "GET"})
+      .then(res => { return res.json(); })
       .then(res => {
-        console.log('response', res);
-        if (res.ok) {
-          this.searchInput = ''
-          return res.json();
+        console.log('res', res);
+        this.response = res == null ? [] : res.value;
+        if (this.response.length === 0) {
+          this.message = "Aucun médicament contre-indiqué";
         }
-      }).then(res => {
-        this.response = res.value;
         this.isLoading = false;
-      })
+      }, res => {
+          this.message = "Une erreur s'est produite."
+          this.isLoading = false;
+      });
     }
   },
 };

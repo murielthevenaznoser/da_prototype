@@ -5,7 +5,7 @@
   font-size: 20em;
   font-weight: bold;
   text-align: center;
-  color: rgba(175, 47, 47, 0.15);
+  color: hsl(120, 93%, 29%);
   padding-bottom: 20em;
 }
 
@@ -28,17 +28,28 @@
   border-radius: 5em;
   border-width: 0;
   box-shadow: rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0;          
-  color: #058f05;
+  color: hsl(120, 93%, 29%);
   cursor: pointer;
-  width: 10em;
+  width: 8em;
 }
 
-.login input {
+input {
   display: block;
+  width: fit-content;
   margin-bottom: 2em;
+}
+
+footer {
+  margin-top: auto;
 }
 
 #alert {
   color: red;
+  margin-bottom: 1em;
+}
+
+#message {
+  color: blue;
+  font-size: 16em;
   margin-bottom: 1em;
 }

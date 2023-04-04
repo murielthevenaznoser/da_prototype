@@ -15,10 +15,13 @@
         </form>
     </section>
     <Demo v-show="loggedIn"/>
+    <footer class="footer">&copy; by ALLIANs allergY SaRL</footer>
 </template>
 
 <script lang="js">
 import Demo from './Demo.vue'
+
+const USERNAME = "admin";
 
 export default {
     components: {
@@ -35,8 +38,7 @@ export default {
     methods: {
         login() {
             this.alert = "";
-            console.log("pw", import.meta.env.VITE_PW);
-            if (this.username === "admin" && this.password === import.meta.env.VITE_PW)
+            if (this.username === USERNAME && this.password === import.meta.env.VITE_PW)
             {
                 this.loggedIn = true;
             }

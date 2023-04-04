@@ -23,25 +23,29 @@
     }
   },
   "entities": {
-    "Medications": {
+    "Medication": {
       "source": "dbo.medications",
       "rest": {
-        "path": "medications"
+        "path": "medication"
       },
-      "permissions": [        {
-        "actions": ["read"],
-        "role": "anonymous"
-      }]
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
     },
-    "Categories": {
+    "Categorie": {
       "source": "dbo.categories",
       "rest": {
-        "path": "categories"
+        "path": "categorie"
       },
-      "permissions": [        {
+      "permissions": [        
+        {
         "actions": ["read"],
         "role": "anonymous"
-      }]
+        }
+      ]
     }
   }
 }
