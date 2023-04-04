@@ -10,7 +10,7 @@ footer{
 
 .demo h1 {
   display: block;
-  font-size: 6em;
+  font-size: 4em;
   font-weight: bold;
   text-align: center;
   color: hsl(120, 93%, 29%);
@@ -49,13 +49,18 @@ input {
   display: block;
 }
 
+label {
+  font-size: 2em;
+  font-weight: bold;
+}
+
 .demo input {
   display: block;
   margin-bottom: 2em;
-  font-size: 2em;
+  font-size: 1.8em;
   background-color: #C2FBD7;     
-  width: 25em;
-  height: 1.8em;
+  width: 20em;
+  height: 1.6em;
 }
 
 #alert {
