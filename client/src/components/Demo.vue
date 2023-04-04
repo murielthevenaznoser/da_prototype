@@ -12,9 +12,12 @@
         <li v-for="category in response">
           <div>
             <label>{{ category.name }}</label>
-            <p>Recommandation immédiate: {{ category.primaryEffect }}</p>
-            <p>Recommandation à long terme: {{ category.secondaryEffect }}</p>
-            <p>List des médicaments concernés: {{ category.secondaryEffect }}</p>
+            <p class="bold">Recommandation immédiate: {{ category.primaryEffect }}</p>
+            <p class="italic">{{ category.primaryEffect }}</p>
+            <p class="bold">Recommandation à long terme: {{ category.secondaryEffect }}</p>
+            <p class="italic">{{ category.secondaryEffect }}</p>
+            <p></p>
+            <p class="bold">List des médicaments concernés:</p>
             <ul>
               <li v-for="medication in category.medications">
                 <div>
@@ -79,9 +82,6 @@ export default {
         this.showError();
         return;
       }
-        console.log('medications', this.medications);
-        console.log('categories', this.categories);
-
         var medsWithInputName = this.medications.filter(m => m.name === value);
         if (!medsWithInputName || medsWithInputName.length === 0) 
         {
@@ -102,18 +102,14 @@ export default {
           return;
         }
 
-        console.log('resultig categores', resultingCategories);
-
         this.response = resultingCategories.map(cat => {
           var medEntries = this.medications.filter(m => m.categoryId === cat.id);
-          console.log('medEntries', medEntries);
           if (medEntries.length === 0)
           {
             this.showError();
             return;
           }
           cat.medications = medEntries;
-          console.log('cat at the end', cat);
           return cat;
         })
     },
