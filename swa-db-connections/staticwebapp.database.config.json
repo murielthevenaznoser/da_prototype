@@ -32,6 +32,16 @@
         "actions": ["read"],
         "role": "anonymous"
       }]
+    },
+    "Categories": {
+      "source": "dbo.categories",
+      "rest": {
+        "path": "categories"
+      },
+      "permissions": [        {
+        "actions": ["read"],
+        "role": "anonymous"
+      }]
     }
   }
 }
