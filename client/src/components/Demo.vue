@@ -95,12 +95,11 @@ export default {
         .then(res => { return res.json(); })
         .then(res => {
           this.medications = res?.value === null || res?.value === undefined ? [] : res.value;
-          var entries = this.medications.filter(m => m.name === value);
+          var entries = this.medications.filter(e => e.name === value).map(e => new Medication(e));
           console.log('entries', entries);
           var categories = [];
           foreach(entry in entries)
           {
-            console.log('entry', entry);
             var category = this.getCategoryInfos(entry.id);
             categories.push(category);
           }
