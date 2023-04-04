@@ -114,7 +114,7 @@ export default {
         headers: HEADERS,
         method: "GET"
       })
-        .then(res => { return res.json(); }, () => {return} )
+        .then(res => { return res.json(); })
         .then(res => {
           console.log('category', res);
           return new Category(res);
