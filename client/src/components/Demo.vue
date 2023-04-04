@@ -94,7 +94,7 @@ export default {
               this.logError();
               return;
             }
-            categories.push(new Category(category));
+            categories.push(category);
           });
           return categories;
         }, () => { this.logError(); }
@@ -124,8 +124,6 @@ export default {
 
     getMedicationsForCategories: function (categories) {
       categories.forEach(category => {
-        console.log('medic', this.medications);
-        console.log('categ', category);
         var medEntries = this.medications.filter(m => m.categoryId === category.id);
         category.medications = medEntries;
         this.response.push(category);
