@@ -99,12 +99,14 @@ export default {
           var categories = [];
           entries.forEach(async entry => {
             var category = await this.getCategoryInfos(entry.categoryId);
+            console.log("category back", category);
             if (!category) {
               return null;
             }
             categories.push(category);
+            console.log("categories from within", categories);
           });
-          console.log('categories well formed?', categories);
+          console.log("categories from outside", categories);
           return categories;
         }
         );
