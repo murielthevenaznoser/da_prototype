@@ -65,6 +65,8 @@ export default {
   methods: {
     searchMedication: async function () {
       this.isLoading = true;
+      this.response = [];
+      this.message = '';
 
       var value = this.searchInput && this.searchInput.trim();
       if (value) {
@@ -122,7 +124,7 @@ export default {
           if (!res?.value || res.value.length !== 1) {
             return null;
           }
-          return new Category(res.value[0]);
+          return res.value[0];
         });
     },
 
