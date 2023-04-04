@@ -13,9 +13,9 @@
           <div>
             <label>{{ category.name }}</label>
             <p class="titel">Recommandation immédiate:</p>
-            <p class="value">{{ category.primaryEffect }}</p>
+            <p class="value">"{{ category.primaryEffect }}"</p>
             <p class="titel">Recommandation à long terme:</p>
-            <p class="value">{{ category.secondaryEffect }}</p>
+            <p class="value">"{{ category.secondaryEffect }}"</p>
             <p></p>
             <p class="titel">List des médicaments concernés:</p>
             <ul>
@@ -112,6 +112,7 @@ export default {
           cat.medications = medEntries;
           return cat;
         })
+        console.log(this.response);
         this.isLoading = false;
     },
 
