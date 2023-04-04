@@ -124,7 +124,7 @@ export default {
           }
           var category = res.value.find(v => v);
           console.log('cat',category);
-          return new Category(category);
+          return new Category({category});
         });
     },
 

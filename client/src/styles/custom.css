@@ -39,11 +39,12 @@ footer{
   color: hsl(120, 93%, 29%);
   cursor: pointer;
   width: 8em;
+  height: 1.6em;
 }
 
 input {
   margin-top: 0.5em;
-  height: 1.5em;
+  height: 1.6em;
   margin-bottom: 1em;
   display: block;
 }
