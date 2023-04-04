@@ -103,7 +103,7 @@ export default {
             if (!category) {
               return null;
             }
-            categories.push(new Category(category));
+            categories.push(category);
             console.log("categories from within", categories);
           });
           console.log("categories from outside", categories);
@@ -122,7 +122,7 @@ export default {
           if (!res?.value || res.value.length !== 1) {
             return null;
           }
-          return res.value[0];
+          return new Category(res.value[0]);
         });
     },
 
