@@ -70,24 +70,10 @@ export default {
 
       var value = this.searchInput && this.searchInput.trim();
       if (value) {
-
-        var categories = await this.getCategories(value);
-        console.log('cat first', categories);
-
-        if (!categories) {
-          this.message = "Une erreur s'est produite."
-          this.isLoading = false;
-          return;
-        }
-
-        if (categories.length === 0) {
-          this.message = "Aucun médicament contre-indiqué";
-          this.message = categories;
-          this.isLoading = false;
-          return;
-        }
-        console.log('cat second', categories);
-        this.getMedicationsForCategories(categories);
+        await this.getCategories(value);
+      }
+      else {
+        this.returnError();
       }
     },
 
@@ -104,12 +90,19 @@ export default {
           entries.forEach(async entry => {
             var category = await this.getCategoryInfos(entry.categoryId);
             if (!category) {
-              return null;
+              this.logError();
+              return;
             }
             categories.push(new Category(category));
           });
-          return categories;
-        }
+
+          if (categories.length === 0) {
+            this.message = "Aucun médicament contre-indiqué";
+            this.isLoading = false;
+            return;
+          }
+          return this.getMedicationsForCategories(categories);
+        }, () => { this.logError(); }
         );
     },
 
@@ -124,7 +117,7 @@ export default {
             return null;
           }
           return res.value[0];
-        });
+        }, () => { this.logError(); });
     },
 
     getMedicationsForCategories: function (categories) {
@@ -137,6 +130,11 @@ export default {
       console.log('response', this.response);
       this.isLoading = false;
     },
+
+    returnError: function () {
+      this.message = "Une erreur s'est produite."
+      this.isLoading = false;
+    }
   },
 };
 
