@@ -45,6 +45,7 @@ export default {
     return {
       searchInput: '',
       response: [],
+      medications: [],
       isLoading: false,
       message: ''
     };
@@ -87,13 +88,14 @@ export default {
     },
 
     getCategories: function (value) {
-      fetch(MEDICATION + `?$name=${value}`, {
+      fetch(MEDICATION, {
         headers: HEADERS,
         method: "GET"
       })
         .then(res => { return res.json(); })
         .then(res => {
-          var entries = res?.value === null || res?.value === undefined ? [] : res.value;
+          this.medications = res?.value === null || res?.value === undefined ? [] : res.value;
+          var entries = this.medications.filter(m => m.name === value);
           var categories = [];
           foreach(entry in entries)
           {
