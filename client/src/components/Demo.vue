@@ -87,14 +87,14 @@ export default {
     },
 
     getCategories: function (value) {
-      fetch(MEDICATION + `?$name=${value}`, {
+      fetch(MEDICATION + `?name=${value}`, {
         headers: HEADERS,
         method: "GET"
       })
-        .then(res => { return res.json(); }, () => {return} )
+        .then(res => { return res.json(); })
         .then(res => {
-          console.log('medications', res);
-          var entries = res?.value == null ? [] : res.value;
+          var entries = res?.value === null ? [] : res.value;
+          console.log('entries', entries);
           var categories = [];
           foreach(entry in entries)
           {
@@ -122,7 +122,7 @@ export default {
     getMedicationsForCategories: function (categories) {
       foreach(category in categories)
       {
-        fetch(MEDICATION + `?$categoryId=${category.id}`, {
+        fetch(MEDICATION + `?categoryId=${category.id}`, {
           headers: HEADERS,
           method: "GET"
         })

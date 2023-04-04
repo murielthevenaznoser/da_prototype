@@ -1,11 +1,13 @@
 body{
   margin-top: 3em;
   min-height: 200vh;
-  display: block;
+  display: flex;
+  justify-content:center;
+  align-items:center;
 }
 
 footer{
-  margin-top: auto;
+  margin-top: 40em;
 }
 
 .demo h1 {
@@ -27,6 +29,7 @@ footer{
 }
 
 .login button {
+  display: block;
   margin-bottom: 2em;
   background-color: #C2FBD7;
   border-radius: 5em;
@@ -37,7 +40,12 @@ footer{
   width: 8em;
 }
 
+input {
+  display: block;
+}
+
 .demo input {
+  display: block;
   margin-bottom: 2em;
   background-color: #C2FBD7;     
   width: 20em;
