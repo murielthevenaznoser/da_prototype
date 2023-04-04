@@ -1,26 +1,21 @@
 body{
-  min-height: 100vh;
+  margin-top: 3em;
+  min-height: 200vh;
   display: flex;
-  flex-direction: column;
 }
 
 footer{
   margin-top: auto;
 }
 
-.demo h2 {
+.demo h1 {
   position: absolute;
-  top: -40em;
   width: 100%;
-  font-size: 20em;
+  font-size: 6em;
   font-weight: bold;
   text-align: center;
   color: hsl(120, 93%, 29%);
   padding-bottom: 20em;
-}
-
-.login {
-  margin-top: 3em;
 }
 
 .bottom {
@@ -32,7 +27,6 @@ footer{
 }
 
 .login button {
-  display: block;
   margin-bottom: 2em;
   background-color: #C2FBD7;
   border-radius: 5em;
@@ -43,10 +37,10 @@ footer{
   width: 8em;
 }
 
-input {
-  display: block;
-  width: fit-content;
+.demo input {
   margin-bottom: 2em;
+  background-color: #C2FBD7;     
+  width: 20em;
 }
 
 #alert {

@@ -7,6 +7,25 @@
         @keyup.enter="searchMedication" />
     </header>
     <div id="message" v-if="message">{{ message }}</div>
+    <section v-show="response.length">
+      <ul>
+        <li v-for="category in response">
+          <div>
+            <label>{{ category.name }}</label>
+            <p>Recommandation immédiate: {{ category.primaryEffect }}</p>
+            <p>Recommandation à long terme: {{ category.secondaryEffect }}</p>
+            <p>List des médicaments concernés: {{ category.secondaryEffect }}</p>
+            <ul>
+              <li v-for="medication in category.medications">
+                <div>
+                  <label>{{ medication.name }}</label>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </section>
   </section>
 </template>
 
@@ -68,7 +87,7 @@ export default {
     },
 
     getCategories: function (value) {
-      fetch(MEDICATION + `/name/${value}`, {
+      fetch(MEDICATION + `?$name=${value}`, {
         headers: HEADERS,
         method: "GET"
       })
@@ -103,7 +122,7 @@ export default {
     getMedicationsForCategories: function (categories) {
       foreach(category in categories)
       {
-        fetch(MEDICATION + `/categoryId/${category.id}`, {
+        fetch(MEDICATION + `?$categoryId=${category.id}`, {
           headers: HEADERS,
           method: "GET"
         })
