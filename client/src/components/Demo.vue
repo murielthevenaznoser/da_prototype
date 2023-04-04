@@ -122,7 +122,9 @@ export default {
           if (!res?.value || res.value.length !== 1) {
             return null;
           }
-          return new Category(res.value[0]);
+          var category = res.value.find(v => v);
+          console.log('cat',category);
+          return new Category(category);
         });
     },
 
