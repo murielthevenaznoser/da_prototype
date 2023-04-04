@@ -63,15 +63,15 @@ export default {
   },
 
   methods: {
-    searchMedication: function () {
+    searchMedication: async function () {
       this.isLoading = true;
 
       var value = this.searchInput && this.searchInput.trim();
       if (value) {
 
-        var categories = this.getCategories(value);
+        var categories = await this.getCategories(value);
 
-        if (!categories ) {
+        if (!categories) {
           this.message = "Une erreur s'est produite."
           this.isLoading = false;
           return;
@@ -87,35 +87,29 @@ export default {
       }
     },
 
-    getCategories: function (value) {
-      fetch(MEDICATION, {
+    getCategories: async function (value) {
+      const res = await fetch(MEDICATION, {
         headers: HEADERS,
         method: "GET"
-      })
-        .then(res => { return res.json(); })
-        .then(res => {
-          this.medications = res?.value === null || res?.value === undefined ? [] : res.value;
-          var entries = this.medications.filter(e => e.name === value).map(e => new Medication(e));
-          var categories = [];
-          entries.forEach(entry => 
-          {
-            var category = this.getCategoryInfos(entry.categoryId);
-            categories.push(category);
-          });
-          console.log('categories after foreach', categories);
-          return categories;
-        }
-        );
+      });
+      const res_1 = await res.json();
+      this.medications = res_1?.value === null || res_1?.value === undefined ? [] : res_1.value;
+      var entries = this.medications.filter(e => e.name === value).map(e_1 => new Medication(e_1));
+      entries.forEach(async entry => {
+        var category = await this.getCategoryInfos(entry.categoryId);
+        categories.push(category);
+      });
+      console.log('all categories', categories);
+      return categories;
     },
 
-    getCategoryInfos: function (id) {
+    getCategoryInfos:  async function (id) {
       fetch(CATEGORIE + `/id/${id}`, {
         headers: HEADERS,
         method: "GET"
       })
         .then(res => { return res.json(); })
         .then(res => {
-          console.log('category', res);
           return new Category(res);
         });
     },
