@@ -87,7 +87,7 @@ export default {
     },
 
     getCategories: function (value) {
-      fetch(MEDICATION + `?name=${value}`, {
+      fetch(MEDICATION + `?$name=${value}`, {
         headers: HEADERS,
         method: "GET"
       })
@@ -121,7 +121,7 @@ export default {
     getMedicationsForCategories: function (categories) {
       foreach(category in categories)
       {
-        fetch(MEDICATION + `?categoryId=${category.id}`, {
+        fetch(MEDICATION + `?$categoryId=${category.id}`, {
           headers: HEADERS,
           method: "GET"
         })

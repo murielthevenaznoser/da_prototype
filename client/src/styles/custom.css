@@ -9,13 +9,11 @@ footer{
 }
 
 .demo h1 {
-  position: absolute;
-  width: 100%;
+  display: block;
   font-size: 6em;
   font-weight: bold;
   text-align: center;
   color: hsl(120, 93%, 29%);
-  padding-bottom: 20em;
 }
 
 .bottom {
@@ -40,8 +38,11 @@ footer{
 }
 
 input {
-  margin-top: 1em;
   display: block;
+}
+
+input label {
+  margin-top: 1em;
 }
 
 .demo input {
