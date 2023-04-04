@@ -23,6 +23,9 @@ end else begin
     alter role db_owner add member [app_dab_user]
 end
 
+truncate table dbo.categories;
+truncate table dbo.medications;
+
 
 -- Insert sample data
 insert into dbo.categories
