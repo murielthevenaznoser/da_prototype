@@ -90,6 +90,7 @@ export default {
 
           entries.forEach(entry => {
             var category = this.getCategoryInfos(entry.categoryId);
+            console.log('first cat after model', category);
             if (!category) {
               this.logError();
               return;
@@ -118,7 +119,7 @@ export default {
           if (!res?.value || res.value.length !== 1) {
             return null;
           }
-          return res.value[0];
+          return new Category(res.value[0]);
         }, () => { this.logError(); });
     },
 
