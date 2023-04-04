@@ -119,8 +119,10 @@ export default {
       })
         .then(res => { return res.json(); })
         .then(res => {
-          console.log("cat infos", res);
-          return new Category(res);
+          if (!res?.value || res.value.length !== 1) {
+            return null;
+          }
+          return new Category(res.value[0]);
         });
     },
 
