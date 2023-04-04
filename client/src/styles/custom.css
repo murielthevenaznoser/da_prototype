@@ -1,12 +1,16 @@
 .demo h2 {
   position: absolute;
-  top: -40px;
+  top: -40em;
   width: 100%;
-  font-size: 20px;
+  font-size: 20em;
   font-weight: bold;
   text-align: center;
   color: rgba(175, 47, 47, 0.15);
-  padding-bottom: 20px;
+  padding-bottom: 20em;
+}
+
+.login {
+  margin-top: 20em;
 }
 
 .bottom {
@@ -17,13 +21,19 @@
   display: inline;
 }
 
-button,
+.login button,
 input {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 2em;
+  background-color: #C2FBD7;
+  border-radius: 5em;
+  border-width: 0;
+  box-shadow: rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0;          
+  color: #008000;
+  cursor: pointer;
 }
 
 #alert {
   color: red;
-  margin-bottom: 10px;
+  margin-bottom: 10em;
 }
