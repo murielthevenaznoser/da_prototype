@@ -63,10 +63,6 @@ label {
   height: 1.6em;
 }
 
-ul {
-  width: 50em;
-}
-
 li {
   margin-top: 2em;
 }
@@ -82,11 +78,11 @@ li {
   margin-bottom: 1em;
 }
 
-#value {
+.value {
   font-size: 1em;
   font-weight: bold;
 }
 
-#titel {
+.titel {
   font-size: 1em;
 }

@@ -112,7 +112,7 @@ export default {
           cat.medications = medEntries;
           return cat;
         })
-        this.loading = false;
+        this.isLoading = false;
     },
 
     getMedications: function() {
