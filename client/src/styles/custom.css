@@ -17,8 +17,13 @@
   display: inline;
 }
 
-.drag {
-  border-left-width: thick;
-  border-left-style: solid;
-  border-left-color: rgba(175, 47, 47, 0.15);
+button,
+input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#alert {
+  color: red;
+  margin-bottom: 10px;
 }

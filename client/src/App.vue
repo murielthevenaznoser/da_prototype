@@ -1,16 +1,16 @@
 <template>  
   <vue-progress-bar></vue-progress-bar>
-  <Demo />
+  <Login />
 </template>
 
 <script>
-import Demo from './components/Demo.vue'
+import Login from './components/Login.vue'
 import { getCurrentInstance } from "vue";
 
 export default {  
   name: 'App',
   components: {
-    Demo
+    Login
   },
   setup() {
     const internalInstance = getCurrentInstance();
