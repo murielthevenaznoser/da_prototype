@@ -7,7 +7,6 @@ const { gitDescribeSync } = require('git-describe');
 
 process.env.VITE_APP_VERSION = require('./package.json').version
 process.env.VITE_APP_GIT_HASH = gitDescribeSync().hash
-process.env.VITE_PW = "@env('PASSWORD')"
 
 // https://vitejs.dev/config/
 export default defineConfig({

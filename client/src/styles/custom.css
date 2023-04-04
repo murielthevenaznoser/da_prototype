@@ -30,7 +30,7 @@
   box-shadow: rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0;          
   color: #058f05;
   cursor: pointer;
-  width: fit-content;
+  width: 10em;
 }
 
 .login input {
@@ -40,5 +40,5 @@
 
 #alert {
   color: red;
-  margin-bottom: 10em;
+  margin-bottom: 1em;
 }
