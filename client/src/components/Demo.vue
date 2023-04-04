@@ -96,6 +96,7 @@ export default {
         .then(res => {
           this.medications = res?.value === null || res?.value === undefined ? [] : res.value;
           var entries = this.medications.filter(m => m.name === value);
+          console.log('entries', entries);
           var categories = [];
           foreach(entry in entries)
           {
