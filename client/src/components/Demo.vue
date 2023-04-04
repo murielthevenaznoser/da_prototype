@@ -46,6 +46,7 @@ export default {
       searchInput: '',
       response: [],
       medications: [],
+      categories: [],
       isLoading: false,
       message: ''
     };
@@ -62,6 +63,11 @@ export default {
     }
   },
 
+  mounted() {
+    this.getCategories();
+    this.getMedications();
+  },
+
   methods: {
     searchMedication: function () {
       this.isLoading = true;
@@ -69,73 +75,69 @@ export default {
       this.message = '';
 
       var value = this.searchInput && this.searchInput.trim();
-      if (value) {
-        this.getCategories(value);
-      }
-      else {
+      if (!value) {
         this.showError();
+        return;
       }
+        console.log('medications', this.medications);
+        console.log('categories', this.categories);
+
+        var medsWithInputName = this.medications.filter(m => m.name === value);
+        if (!medsWithInputName || medsWithInputName.length === 0) 
+        {
+          this.message = "Pas de médicament trouvé pour ce nom";
+          this.isLoading = false;
+          return;
+        }
+
+        var resultingCategories = [];
+        medsWithInputName.forEach(m => {
+          var category = this.categories.find(c => c.id === m.categoryId);
+          resultingCategories.push(category);
+        })
+
+        if (resultingCategories.length === 0)
+        {
+          this.showError();
+          return;
+        }
+
+        console.log('resultig categores', resultingCategories);
+
+        this.response = resultingCategories.map(cat => {
+          var medEntries = this.medications.filter(m => m.categoryId === cat.id);
+          console.log('medEntries', medEntries);
+          if (medEntries.length === 0)
+          {
+            this.showError();
+            return;
+          }
+          cat.medications = medEntries;
+          console.log('cat at the end', cat);
+          return cat;
+        })
     },
 
-    getCategories: function (value) {
+    getMedications: function() {
       fetch(MEDICATION, {
         headers: HEADERS,
         method: "GET"
       })
         .then(res => { return res.json(); })
         .then(res => {
-          this.medications = res?.value === null || res?.value === undefined ? [] : res.value;
-          var entries = this.medications.filter(m => m.name === value).map(e => new Medication(e));
-          var categories = [];
-
-          entries.forEach(async entry => {
-            var category = await this.getCategoryInfos(entry.categoryId);
-            console.log('first cat after model', category);
-            if (!category) {
-              this.showError();
-              return;
-            }
-            categories.push(category);
-          });
-          return categories;
-        }, () => { this.showError(); }
-        ).then(categories => {
-          if (categories.length === 0) {
-            this.message = "Aucun médicament contre-indiqué";
-            this.isLoading = false;
-            return;
-          }
-          this.getMedicationsForCategories(categories);
+          this.medications = res?.value === null || res?.value === undefined ? [] : res.value.map(e => new Medication(e));
         });
     },
 
-    getCategoryInfos: async function (id) {
-      return await fetch(CATEGORIE + `/id/${id}`, {
+    getCategories: function() {
+      fetch(CATEGORIE, {
         headers: HEADERS,
         method: "GET"
       })
         .then(res => { return res.json(); })
         .then(res => {
-          if (!res?.value || res.value.length !== 1) {
-            return null;
-          }
-          return new Category(res.value[0]);
-        }, () => { this.showError(); });
-    },
-
-    getMedicationsForCategories: function (categories) {
-      console.log('categories', categories);
-      var response = [];
-      categories.forEach(category => {
-        console.log('cat', category);
-        var medEntries = this.medications.filter(m => m.categoryId === category.id);
-        console.log('medEntries', medEntries);
-        response.push(category);
-      });
-      this.response = response.map(e => new Category(e));
-      console.log('response 1', response);
-      console.log('response 2', this.response);
-      this.isLoading = false;
+          this.categories = res?.value === null || res?.value === undefined ? [] : res.value.map(e => new Category(e));
+        });
     },
 
     showError: function () {
