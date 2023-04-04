@@ -104,7 +104,7 @@ export default {
             this.isLoading = false;
             return;
           }
-          return this.getMedicationsForCategories(categories);
+          this.getMedicationsForCategories(categories);
         });
     },
 
@@ -123,10 +123,12 @@ export default {
     },
 
     getMedicationsForCategories: function (categories) {
+      console.log('categories', categories);
       var response = [];
       categories.forEach(category => {
+        console.log('cat', category);
         var medEntries = this.medications.filter(m => m.categoryId === category.id);
-        category.medications = medEntries;
+        console.log('medEntries', medEntries);
         response.push(category);
       });
       this.response = response.map(e => new Category(e));
