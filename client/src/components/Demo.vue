@@ -96,15 +96,7 @@ export default {
             }
             categories.push(new Category(category));
           });
-
-          console.log('categories', categories);
-          console.log('length', categories.length);
-
-          if (categories.length === 0) {
-            this.message = "Aucun médicament contre-indiqué";
-            this.isLoading = false;
-            return;
-          }
+          
           return this.getMedicationsForCategories(categories);
         }, () => { this.logError(); }
         );
