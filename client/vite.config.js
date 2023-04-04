@@ -3,10 +3,11 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-const { gitDescribe, gitDescribeSync } = require('git-describe');
+const { gitDescribeSync } = require('git-describe');
 
 process.env.VITE_APP_VERSION = require('./package.json').version
 process.env.VITE_APP_GIT_HASH = gitDescribeSync().hash
+process.env.VITE_PW = "@env('PASSWORD')"
 
 // https://vitejs.dev/config/
 export default defineConfig({

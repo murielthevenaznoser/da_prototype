@@ -35,8 +35,8 @@ export default {
     methods: {
         login() {
             this.alert = "";
-            console.log("pw", import.meta.env);
-            if (this.username === "admin" && this.password === import.meta.env.PASSWORD)
+            console.log("pw", import.meta.env.VITE_PW);
+            if (this.username === "admin" && this.password === import.meta.env.VITE_PW)
             {
                 this.loggedIn = true;
             }
