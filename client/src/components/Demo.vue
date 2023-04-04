@@ -63,40 +63,40 @@ export default {
   },
 
   methods: {
-    searchMedication: async function () {
+    searchMedication: function () {
       this.isLoading = true;
       this.response = [];
       this.message = '';
 
       var value = this.searchInput && this.searchInput.trim();
       if (value) {
-        await this.getCategories(value);
+        this.getCategories(value);
       }
       else {
         this.returnError();
       }
     },
 
-    getCategories: async function (value) {
-      return await fetch(MEDICATION, {
+    getCategories: function (value) {
+      return fetch(MEDICATION, {
         headers: HEADERS,
         method: "GET"
       })
         .then(res => { return res.json(); })
-        .then(async res => {
+        .then(res => {
           this.medications = res?.value === null || res?.value === undefined ? [] : res.value;
           var entries = this.medications.filter(m => m.name === value).map(e => new Medication(e));
           var categories = [];
 
-          await entries.forEach(async entry => {
-            var category = await this.getCategoryInfos(entry.categoryId);
+          entries.forEach(entry => {
+            var category = this.getCategoryInfos(entry.categoryId);
             if (!category) {
               this.logError();
               return;
             }
             categories.push(new Category(category));
           });
-
+          console.log('categ', categories);
           return categories;
         }, () => { this.logError(); }
         ).then(categories => {
@@ -110,8 +110,8 @@ export default {
         });
     },
 
-    getCategoryInfos: async function (id) {
-      return await fetch(CATEGORIE + `/id/${id}`, {
+    getCategoryInfos: function (id) {
+      return fetch(CATEGORIE + `/id/${id}`, {
         headers: HEADERS,
         method: "GET"
       })
