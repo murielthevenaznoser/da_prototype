@@ -1,11 +1,10 @@
 body{
   display: flex;
   justify-content:center;
-  align-items:center;
 }
 
 footer{
-  margin-top: 20em;
+  margin-top: 30em;
 }
 
 .demo h1 {
@@ -85,4 +84,9 @@ li {
 
 .titel {
   font-size: 1.2em;
+}
+
+.medic {
+  font-size: 1.4em;
+  color: blue;
 }

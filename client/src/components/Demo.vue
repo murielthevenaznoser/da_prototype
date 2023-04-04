@@ -10,7 +10,6 @@
     <section v-show="response.length > 0">
       <ul>
         <li v-for="category in response">
-          <div>
             <label>{{ category.name }}</label>
             <p class="titel">Recommandation immédiate:</p>
             <p class="value">"{{ category.primaryEffect }}"</p>
@@ -20,12 +19,9 @@
             <p class="titel">List des médicaments concernés:</p>
             <ul>
               <li v-for="medication in category.medications">
-                <div>
-                  <label>{{ medication.name }}</label>
-                </div>
+                  <p class="medic">{{ medication.name }}</p>
               </li>
             </ul>
-          </div>
         </li>
       </ul>
     </section>
