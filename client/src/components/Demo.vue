@@ -123,11 +123,15 @@ export default {
     },
 
     getMedicationsForCategories: function (categories) {
+      var response = [];
       categories.forEach(category => {
         var medEntries = this.medications.filter(m => m.categoryId === category.id);
         category.medications = medEntries;
-        this.response.push(category);
+        response.push(category);
       });
+      this.response = response.map(e => new Category(e));
+      console.log('response 1', response);
+      console.log('response 2', this.response);
       this.isLoading = false;
     },
 
