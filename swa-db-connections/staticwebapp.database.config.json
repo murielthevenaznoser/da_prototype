@@ -36,7 +36,11 @@
           "actions": ["read"],
           "role": "anonymous"
         }
-      ]
+      ],
+      "mappings": {
+        "name": "name",
+        "categoryId": "categoryId"
+      }
     },
     "Categorie": {
       "source": "dbo.categories",

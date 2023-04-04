@@ -91,7 +91,7 @@ export default {
         headers: HEADERS,
         method: "GET"
       })
-        .then(res => { return res.json(); })
+        .then(res => { return res.json(); }, () => {return} )
         .then(res => {
           console.log('medications', res);
           var entries = res?.value == null ? [] : res.value;
@@ -112,7 +112,7 @@ export default {
         headers: HEADERS,
         method: "GET"
       })
-        .then(res => { return res.json(); })
+        .then(res => { return res.json(); }, () => {return} )
         .then(res => {
           console.log('category', res);
           return new Category(res);
@@ -126,7 +126,7 @@ export default {
           headers: HEADERS,
           method: "GET"
         })
-          .then(res => { return res.json(); })
+          .then(res => { return res.json(); }, () => {return} )
           .then(res => {
             console.log('all meds', res);
             var medications = res?.value === null ? [] : res.value.map(v => new Medication(v));
