@@ -104,8 +104,11 @@ export default {
             if (!category) {
               return null;
             }
+            var result = new Category(category);
+            console.log('result is', result);
             categories.push(new Category(category));
           });
+          console.log('categories outsie', categories);
           return categories;
         }
         );
@@ -133,6 +136,7 @@ export default {
         this.response.push(category);
       });
       console.log('response', this.response);
+      this.isLoading = false;
     },
   },
 };
