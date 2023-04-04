@@ -1,5 +1,5 @@
 <template>
-  <section class="demo">
+  <div class="demo">
     <header class="header">
       <h1>DEMO</h1>
       <h2 v-if="isLoading">Loading...</h2>
@@ -7,7 +7,7 @@
         @keyup.enter="searchMedication" />
     </header>
     <div id="message" v-if="message">{{ message }}</div>
-    <section v-show="response.length > 0">
+    <div v-show="response.length > 0">
       <ul>
         <li v-for="category in response">
             <label>{{ category.name }}</label>
@@ -24,8 +24,8 @@
             </ul>
         </li>
       </ul>
-    </section>
-  </section>
+    </div>
+  </div>
 </template>
 
 
@@ -108,7 +108,6 @@ export default {
           cat.medications = medEntries;
           return cat;
         })
-        console.log(this.response);
         this.isLoading = false;
     },
 
