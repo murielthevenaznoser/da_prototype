@@ -7,7 +7,7 @@
         @keyup.enter="searchMedication" />
     </header>
     <div id="message" v-if="message">{{ message }}</div>
-    <section v-show="response.length">
+    <section v-show="response.length > 0">
       <ul>
         <li v-for="category in response">
           <div>
@@ -87,6 +87,7 @@ export default {
           this.medications = res?.value === null || res?.value === undefined ? [] : res.value;
           var entries = this.medications.filter(m => m.name === value).map(e => new Medication(e));
           var categories = [];
+
           entries.forEach(async entry => {
             var category = await this.getCategoryInfos(entry.categoryId);
             if (!category) {
@@ -95,6 +96,8 @@ export default {
             }
             categories.push(new Category(category));
           });
+
+          console.log('categories', categories);
 
           if (categories.length === 0) {
             this.message = "Aucun médicament contre-indiqué";
