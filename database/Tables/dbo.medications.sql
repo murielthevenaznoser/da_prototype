@@ -4,7 +4,6 @@ CREATE TABLE [dbo].[medications]
 	[name] [nvarchar](1000) NOT NULL,
 	[component] [nvarchar](1000) NOT NULL,
 	[categoryId] [uniqueidentifier] NOT NULL,
-	PRIMARY KEY (id),
-    FOREIGN KEY (categoryId) REFERENCES categories(id)
+	PRIMARY KEY (id)
 ) 
 GO
