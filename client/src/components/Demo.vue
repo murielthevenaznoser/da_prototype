@@ -113,7 +113,7 @@ export default {
     },
 
     getCategoryInfos: async function (id) {
-      fetch(CATEGORIE + `/id/${id}`, {
+      return await fetch(CATEGORIE + `/id/${id}`, {
         headers: HEADERS,
         method: "GET"
       })
@@ -122,7 +122,7 @@ export default {
           if (!res?.value || res.value.length !== 1) {
             return null;
           }
-          return res.value[0];
+          return new Category(res.value[0]);
         });
     },
 
