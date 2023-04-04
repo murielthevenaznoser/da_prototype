@@ -23,8 +23,15 @@ end else begin
     alter role db_owner add member [app_dab_user]
 end
 
-truncate table dbo.categories;
-truncate table dbo.medications;
+begin
+    alter table dbo.medications
+    drop constraint FK_categories; 
+    truncate table dbo.categories;
+    truncate table dbo.medications;
+    alter table dbo.medications
+    add constraint FK_categories
+    foreign key (categoryId) references categories(id); 
+end
 
 
 -- Insert sample data
