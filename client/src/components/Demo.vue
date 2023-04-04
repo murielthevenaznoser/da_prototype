@@ -99,9 +99,12 @@ export default {
           var categories = [];
           entries.forEach(async entry => {
             var category = await this.getCategoryInfos(entry.categoryId);
+            if (!category) {
+              return null;
+            }
             categories.push(category);
           });
-          console.log('all categories', categories);
+          console.log('categories well formed?', categories);
           return categories;
         }
         );
@@ -114,13 +117,13 @@ export default {
       })
         .then(res => { return res.json(); })
         .then(res => {
-          return new Category(res);
+          return new Category(res?.value);
         });
     },
 
     getMedicationsForCategories: function (categories) {
       categories.forEach(category => {
-        var medEntries = this.medications.filer(m => m.categoryId === category.id);
+        var medEntries = this.medications.filter(m => m.categoryId === category.id);
         category.medications = medEntries;
         this.response.push(category);
       });
