@@ -43,19 +43,17 @@ footer{
 
 input {
   margin-top: 0.5em;
+  margin-bottom: 1em;
   display: block;
-}
-
-label {
-  margin-top: 1em;
 }
 
 .demo input {
   display: block;
   margin-bottom: 2em;
+  font-size: 2em;
   background-color: #C2FBD7;     
-  width: 20em;
-  height: 3em;
+  width: 30em;
+  height: 2.5em;
 }
 
 #alert {

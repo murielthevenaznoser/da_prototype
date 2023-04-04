@@ -71,7 +71,7 @@ export default {
 
         var categories = this.getCategories(value);
 
-        if (categories === null) {
+        if (!categories ) {
           this.message = "Une erreur s'est produite."
           this.isLoading = false;
           return;
@@ -96,11 +96,10 @@ export default {
         .then(res => {
           this.medications = res?.value === null || res?.value === undefined ? [] : res.value;
           var entries = this.medications.filter(e => e.name === value).map(e => new Medication(e));
-          console.log('entries', entries);
           var categories = [];
           foreach(entry in entries)
           {
-            var category = this.getCategoryInfos(entry.id);
+            var category = this.getCategoryInfos(entry.categoryId);
             categories.push(category);
           }
           return categories;
