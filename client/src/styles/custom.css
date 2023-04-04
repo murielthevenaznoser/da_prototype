@@ -24,6 +24,10 @@ footer{
   display: inline;
 }
 
+.login {
+  margin-top: 13em;
+}
+
 .login button {
   display: block;
   margin-top: 1em;
@@ -38,11 +42,8 @@ footer{
 }
 
 input {
-  display: block;
-}
-
-label {
   margin-top: 1em;
+  display: block;
 }
 
 .demo input {

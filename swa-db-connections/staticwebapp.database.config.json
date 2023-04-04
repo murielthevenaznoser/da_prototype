@@ -36,11 +36,7 @@
           "actions": ["read"],
           "role": "anonymous"
         }
-      ],
-      "mappings": {
-        "medications_name": "name",
-        "medications_categoryId": "categoryId"
-      }
+      ]
     },
     "Categorie": {
       "source": "dbo.categories",
