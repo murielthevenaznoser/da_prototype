@@ -1,6 +1,7 @@
 <template>  
   <vue-progress-bar></vue-progress-bar>
   <Login />
+  <footer class="footer">&copy; by ALLIANs allergY SaRL</footer>
 </template>
 
 <script>
