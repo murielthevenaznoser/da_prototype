@@ -72,6 +72,7 @@ export default {
       if (value) {
 
         var categories = await this.getCategories(value);
+        console.log('cat first', categories);
 
         if (!categories) {
           this.message = "Une erreur s'est produite."
@@ -81,10 +82,11 @@ export default {
 
         if (categories.length === 0) {
           this.message = "Aucun médicament contre-indiqué";
+          this.message = categories;
           this.isLoading = false;
           return;
         }
-        console.log('cat', categories);
+        console.log('cat second', categories);
         this.getMedicationsForCategories(categories);
       }
     },
@@ -104,11 +106,8 @@ export default {
             if (!category) {
               return null;
             }
-            var result = new Category(category);
-            console.log('result is', result);
             categories.push(new Category(category));
           });
-          console.log('categories outsie', categories);
           return categories;
         }
         );
