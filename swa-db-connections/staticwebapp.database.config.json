@@ -6,10 +6,12 @@
   },
   "runtime": {
     "rest": {
-      "path": "/rest"
+      "path": "/rest",
+      "enabled": true
     },
     "graphql": {
-      "path": "/graphql"
+      "path": "/graphql",
+      "enabled": false
     },
     "host": { 
       "mode": "development",     
@@ -26,7 +28,8 @@
     "Medication": {
       "source": "dbo.medications",
       "rest": {
-        "path": "medication"
+        "path": "/medication",
+        "methods": [ "get" ]
       },
       "permissions": [
         {
@@ -38,7 +41,8 @@
     "Categorie": {
       "source": "dbo.categories",
       "rest": {
-        "path": "categorie"
+        "path": "/categorie",
+        "methods": [ "get" ]
       },
       "permissions": [        
         {

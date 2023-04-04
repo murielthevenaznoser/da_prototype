@@ -28,20 +28,30 @@ export default {
     };
   },
 
+  watch: {
+    isLoading(newValue) {
+      if (newValue == true) {
+        this.$Progress.start();    
+      }       
+      if (newValue == false) {
+        this.$Progress.finish();
+      } 
+    }
+  },
+
   methods: {
     searchMedication: function () {
       this.isLoading = true;
 
       var value = this.searchInput && this.searchInput.trim();
-      if (!value) return;
-
-      fetch(MEDICATION, {
+      if (value) {
+      var query = "?name=" + value;
+      fetch(MEDICATION + query, {
         headers: HEADERS,
         method: "GET"})
       .then(res => { return res.json(); })
       .then(res => {
-        console.log('res', res);
-        this.response = res == null ? [] : res.value;
+        this.response = res?.value == null ? [] : res.value;
         if (this.response.length === 0) {
           this.message = "Aucun médicament contre-indiqué";
         }
@@ -50,6 +60,7 @@ export default {
           this.message = "Une erreur s'est produite."
           this.isLoading = false;
       });
+    }
     }
   },
 };

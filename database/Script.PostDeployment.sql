@@ -25,8 +25,6 @@ end
 
 truncate table dbo.medications;
 truncate table dbo.categories;
-alter table dbo.medications
-add foreign key (categoryId) references categories(id);
 
 
 -- Insert sample data
